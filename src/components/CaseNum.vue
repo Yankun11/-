@@ -1,12 +1,123 @@
 <template>
-    <div>
-
+    <div class="case-num">
+        <div class="container">
+            <div class="title">
+                <span>截止至 {{ formatData(caseNumData.modifyTime) }} 全国数据统计</span>
+            </div>
+        </div>
+        <div class="num">
+            <ul class="count">
+                <li>
+                    <div class="create-item">
+                        <div class="create-count">
+                            <b>
+                                较昨日
+                                <em style="color:rgb(247, 76, 49)">{{ dataIncrDecr(caseNumData.currentConfirmedIncr)
+                                }}</em>
+                            </b>
+                        </div>
+                        <strong style="color:rgb(247, 76, 49)">{{ caseNumData.currentConfirmedCount }}</strong>
+                        <span>现存确诊</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="create-item">
+                        <div class="create-count">
+                            <b>
+                                较昨日
+                                <em style="color:rgb(247, 130, 7)">{{ dataIncrDecr(caseNumData.suspectedIncr) }}</em>
+                            </b>
+                        </div>
+                        <strong style="color:rgb(247, 130, 7)">{{ caseNumData.suspectedCount }}</strong>
+                        <span>现存疑似</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="create-item">
+                        <div class="create-count">
+                            <b>
+                                较昨日
+                                <em style="color:rgb(162, 90, 78)">{{ dataIncrDecr(caseNumData.seriousIncr) }}</em>
+                            </b>
+                        </div>
+                        <strong style="color:rgb(162, 90, 78)">{{ caseNumData.seriousCount }}</strong>
+                        <span>现存重症</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="create-item">
+                        <div class="create-count">
+                            <b>
+                                较昨日
+                                <em style="color:rgb(174, 33, 44)">+{{ caseNumData.confirmedIncr }}</em>
+                            </b>
+                        </div>
+                        <strong style="color:rgb(174, 33, 44)">{{ caseNumData.confirmedCount }}</strong>
+                        <span>累计确诊</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="create-item">
+                        <div class="create-count">
+                            <b>
+                                较昨日
+                                <em style="color:rgb(93, 112, 146)">+{{ caseNumData.deadIncr }}</em>
+                            </b>
+                        </div>
+                        <strong style="color:rgb(93, 112, 146)">{{ caseNumData.deadCount }}</strong>
+                        <span>累计死亡</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="create-item">
+                        <div class="create-count">
+                            <b>
+                                较昨日
+                                <em style="color:rgb(40, 183, 163)">+{{ caseNumData.curedIncr }}</em>
+                            </b>
+                        </div>
+                        <strong style="color:rgb(40, 183, 163)">{{ caseNumData.curedCount }}</strong>
+                        <span>累计治愈</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    name: "CaseNum",
+    props: {
+        caseNumData: {
+            type: Object,
+            default: function () {
+                return {}
+            }
+        }
+    },
+    // 时间解析的方法
+    methods: {
+        formatData(date) {
+            var date = new Date(date);
+            var YY = date.getFullYear() + "-";
+            var MM = ((date.getMonth()) + 1 < 10 ? "0" + ((date.getMonth()) + 1) : (date.getMonth()) + 1) + "-";
+            var DD = (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + "  ";
+            var hh = (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ":";
+            var mm = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
+            return YY + MM + DD + hh + mm;
+        },
+        // 判断较昨日现存的数量是加还是减
+        dataIncrDecr(data) {
+            if (data > 0 && data != 0) {
+                return "+" + data
+            } else if (data < 0 && data != 0) {
+                return "-" + data
+            } else {
+                return data
+            }
+        }
+    }
 }
 </script>
 
@@ -17,7 +128,6 @@ export default {
 }
 
 .container {
-    margin: -0.16rem 0 0;
     font-size: 0.12rem;
 }
 
@@ -26,11 +136,11 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 0.08rem 0 0.07rem;
-    line-height: 0.24rem;
 }
 
 .title span {
     color: #666;
+    line-height: 2rem;
 }
 
 .title em {
@@ -73,7 +183,7 @@ export default {
     content: "";
 }
 
-.mun ul {
+.count {
     flex-flow: wrap;
     position: relative;
     display: flex;
@@ -81,7 +191,7 @@ export default {
     padding: 0.08rem 0 0.12rem;
 }
 
-.num ul li {
+.count li {
     position: relative;
     z-index: 1;
     display: flex;
@@ -89,34 +199,30 @@ export default {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 33.3333%;
-    margin: 10px 0;
+    width: 33%;
+    margin: 20px 0;
 }
 
-.num ul li .cretate-item {
+.cretate-item {
     position: relative;
     text-align: center;
 }
 
-.mum ul li .create-item .create-count {
+b {
     display: flex;
-    align-items: center;
-    height: 0.12rem;
-    margin-bottom: 0.02rem;
-    color: #666;
-    font-weight: 400;
-    font-size: 0.09rem;
+    font-size: 0.1rem;
 }
 
-.num ul li .create-item .create-count em {
+.create-count em {
     font-weight: 400;
+    font-size: 0.1rem;
     font-style: normal;
 }
 
 .num ul li strong {
     margin-bottom: 0.01rem;
     font-weight: 700;
-    font-size: 0.2rem;
+    font-size: 1.2rem;
     line-height: 0.25rem;
 }
 
@@ -124,7 +230,7 @@ export default {
     display: block;
     color: #333;
     font-weight: 700;
-    font-size: 0.11rem;
-    line-height: 0.15rem;
+    font-size: 0.1rem;
+    line-height: 0.8rem;
 }
 </style>
