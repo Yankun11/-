@@ -5,11 +5,11 @@
             疫情实况
         </p>
         <div class="content">
-            <p>{{ infoData.pubDateStr1 }}</p>
+            <p style="color:orange">{{ infoData.pubDateStr1 }}</p>
             <p>{{ infoData.title1 }}</p>
-            <p>{{ infoData.pubDateStr2 }}</p>
+            <p style="color:orange">{{ infoData.pubDateStr2 }}</p>
             <p>{{ infoData.title2 }}</p>
-            <p>{{ infoData.pubDateStr3 }}</p>
+            <p style="color:orange">{{ infoData.pubDateStr3 }}</p>
             <p>{{ infoData.title3 }}</p>
         </div>
     </div>
@@ -37,7 +37,7 @@ export default {
 }
 
 .title {
-    color: #4169e2;
+    font-size: 0.17rem;
 }
 
 .title i {

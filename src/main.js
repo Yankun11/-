@@ -3,9 +3,17 @@ import App from "./App.vue";
 import router from "./router";
 import "./assets/css/common.css";
 import api from "./api/index";
+import Echarts from "./plugins/echarts";
+import "../node_modules/echarts/extension/bmap/bmap";
+import "../node_modules/echarts";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
 
 const app = createApp(App);
 
+app.use(Echarts);
+app.use(Swiper);
+app.use(SwiperSlide);
 app.use(router);
 app.mount("#app");
 

@@ -3,6 +3,10 @@
     <Header></Header>
     <info :infoData="infoData"></info>
     <CaseNum :caseNumData="caseNumData"></CaseNum>
+    <Map></Map>
+    <TreeCahrt></TreeCahrt>
+    <News :newsData="newsData"></News>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -10,20 +14,25 @@
 import Header from '../components/Header.vue'
 import info from '../components/info.vue'
 import CaseNum from '../components/CaseNum.vue'
+import Map from '../components/Map.vue'
+import TreeCahrt from "../components/TreeChart.vue"
+import News from "../components/News.vue"
+import Footer from "../components/Footer.vue"
 
 export default {
   name: 'Home',
   data() {
     return {
       infoData: {},
-      caseNumData: {}
+      caseNumData: {},
+      newsData: []
     }
   },
   created() {
     this.$api.getDataInfo({
       key: "d651806a778a8735c8ce12d371708045"
     }).then(res => {
-      console.log(res);
+      this.newsData = res.newslist[0].news
       this.infoData = {
         pubDateStr1: res.newslist[0].news[0].pubDateStr,// 发生时间
         title1: res.newslist[0].news[0].title, // 新增确诊数
@@ -54,7 +63,11 @@ export default {
   components: {
     Header,
     info,
-    CaseNum
+    CaseNum,
+    Map,
+    TreeCahrt,
+    News,
+    Footer
   }
 }
 </script>

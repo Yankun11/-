@@ -128,6 +128,7 @@ export default {
 }
 
 .container {
+    margin: -0.16rem 0 0;
     font-size: 0.12rem;
 }
 
@@ -136,11 +137,11 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 0.08rem 0 0.07rem;
+    line-height: 0.24rem;
 }
 
 .title span {
     color: #666;
-    line-height: 2rem;
 }
 
 .title em {
@@ -183,7 +184,7 @@ export default {
     content: "";
 }
 
-.count {
+.num ul {
     flex-flow: wrap;
     position: relative;
     display: flex;
@@ -191,7 +192,7 @@ export default {
     padding: 0.08rem 0 0.12rem;
 }
 
-.count li {
+.num ul li {
     position: relative;
     z-index: 1;
     display: flex;
@@ -199,30 +200,34 @@ export default {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 33%;
-    margin: 20px 0;
+    width: 33.3333333%;
+    margin: 10px 0;
 }
 
-.cretate-item {
+.num ul li .cretate-item {
     position: relative;
     text-align: center;
 }
 
-b {
+.num ul li .cretate-item .create-count {
     display: flex;
-    font-size: 0.1rem;
+    align-items: center;
+    height: 0.12rem;
+    margin-bottom: 0.02rem;
+    color: #666;
+    font-weight: 400;
+    font-size: 0.09rem;
 }
 
-.create-count em {
+.num ul li .cretate-item .create-count em {
     font-weight: 400;
-    font-size: 0.1rem;
     font-style: normal;
 }
 
 .num ul li strong {
     margin-bottom: 0.01rem;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 0.2rem;
     line-height: 0.25rem;
 }
 
@@ -231,6 +236,6 @@ b {
     color: #333;
     font-weight: 700;
     font-size: 0.1rem;
-    line-height: 0.8rem;
+    line-height: 0.15rem;
 }
 </style>
