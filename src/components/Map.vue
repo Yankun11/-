@@ -1,66 +1,33 @@
 <template>
     <div>
         <p class="title"><i></i>疫情地图</p>
-        <div id="chinaMap"></div>
+        <div id="chinaMap" ref="demo"></div>
     </div>
 </template>
 
 <script>
+import * as echarts from "echarts"
+import { mapData } from "../assets/map/mapData.js"
 export default {
-    name: 'Map',
-    data() {
-        return {
-            cityMapData: []
-        }
-    },
     mounted() {
-        this.$api.getCaseNum({
-            key: "d7c335f2e7856ec48c1962a99fcc6f98"
-        }).then(res => {
-            for (var i = 0; i < res.newslist.length; i++) {
-                var temp = {
-                    name: res.newslist[i].provinceShortName,
-                    value: res.newslist[i].currentConfirmedCount,
-                    itemStyle: {
-                        nomal: {
-                            areaColor: this.setColor(res.newslist[i].currentConfirmedCount)
-                        }
-                    }
-                }
-                this.cityMapData.push(temp)
+        let chart = echarts.init(this.$refs.demo);
+        // 注册当前使用的地图名
+        echarts.registerMap("chinaMap", mapData)
+        let option = {
+            // 地理坐标组件
+            geo: {
+                type: "map",
+                map: "chinaMap"
             }
-            this.$charts.chinaMap("chinaMap", this.cityMapData)
-        })
-    },
-    methods: {
-        setColor(value) {
-            let currentColor = '';
-            switch (true) {
-                case value == 0:
-                    currentColor = '#fff'
-                    break;
-                case value > 0 && value < 10:
-                    currentColor = '#FDFDCF'
-                    break;
-                case value >= 10 && value < 100:
-                    currentColor = '#FE9E83'
-                    break;
-                case value >= 100 && value < 500:
-                    currentColor = '#E55A4E'
-                    break;
-                case value >= 500 && value < 10000:
-                    currentColor = '#4F070D'
-                    break;
-            }
-            return currentColor;
-        }
+        };
+        chart.setOption(option);
     }
 }
 </script>
 
 <style scoped>
 #chinaMap {
-    widows: 100%;
+    width: 100%;
     height: 400px;
 }
 

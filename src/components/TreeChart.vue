@@ -31,23 +31,23 @@ export default {
             },
             quanguoTrendChart: [
                 {
-                    imgUrl: "http://img1.dxycdn.com/2020/0220/014/3397684583507458039-13",
+                    // imgUrl: "http://img1.dxycdn.com/2020/0220/014/3397684583507458039-13",
                     title: "新增疑似/新增确诊"
                 },
                 {
-                    imgUrl: "http://img1.dxycdn.com/2020/0220/697/3397684611424536901-13",
+                    // imgUrl: "http://img1.dxycdn.com/2020/0220/697/3397684611424536901-13",
                     title: "现存确诊/现存疑似"
                 },
                 {
-                    imgUrl: "http://img1.dxycdn.com/2020/0220/861/3397684624309439853-13",
+                    // imgUrl: "http://img1.dxycdn.com/2020/0220/861/3397684624309439853-13",
                     title: "死亡/治愈"
                 },
                 {
-                    imgUrl: "http://img1.dxycdn.com/2020/0220/168/3397686703073768694-13",
+                    // imgUrl: "http://img1.dxycdn.com/2020/0220/168/3397686703073768694-13",
                     title: "致死率"
                 },
                 {
-                    imgUrl: "http://img1.dxycdn.com/2020/0220/014/3397686724548816431-13",
+                    // imgUrl: "http://img1.dxycdn.com/2020/0220/014/3397686724548816431-13",
                     title: "治愈率"
                 },
             ]
